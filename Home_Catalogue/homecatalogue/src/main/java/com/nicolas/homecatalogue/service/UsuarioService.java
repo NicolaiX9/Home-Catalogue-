@@ -1,0 +1,32 @@
+package com.nicolas.homecatalogue.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nicolas.homecatalogue.model.Usuario;
+import com.nicolas.homecatalogue.repository.UsuarioRepository;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class UsuarioService {
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    public List<Usuario> listarUsuario(){
+        return usuarioRepository.findAll();
+    }
+
+    @Transactional
+    public Optional<Usuario> buscarPorId(Long id){
+        return usuarioRepository.findById(id);
+    }
+
+    public Usuario guardarUsuario(Usuario usuario){
+        return usuarioRepository.save(usuario);
+    }
+}
